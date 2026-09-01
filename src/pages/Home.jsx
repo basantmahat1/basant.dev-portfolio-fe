@@ -158,14 +158,15 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(214,112,73,0.1)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-tertiary shadow-sm">
             <span className="inline-block h-2 w-2 rounded-full bg-tertiary animate-pulse" />
-            Basant Mahat
+            Full-Stack Developer
           </div>
           <h1 className="mb-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-            I build modern, scalable products as a <em className="italic text-tertiary">Full-Stack Developer</em>.
+            Hello, my name is <em className="italic text-tertiary">Basant Mahat</em>.
           </h1>
           <p className="mb-6 max-w-md text-sm leading-relaxed text-text-secondary sm:mb-8 sm:text-base">
-            Passionate about crafting high-performance web applications, clean backend architectures, and intuitive user experiences.
+            I&apos;m a Full-Stack Developer passionate about crafting modern, scalable web applications, clean architectures, and intuitive digital experiences.
           </p>
+
 
           <div className="mb-6 flex flex-wrap gap-3 sm:mb-7 sm:gap-4">
             <Link to="/projects" className="btn-primary text-xs sm:text-sm">
