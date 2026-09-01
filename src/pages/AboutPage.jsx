@@ -6,13 +6,14 @@ const defaultAbout = {
   title: 'About Me 👋',
   avatar: '',
   description:
-    "I'm Basant, a full-stack developer focused on building elegant digital products, AI-powered workflows, and scalable SaaS experiences. I enjoy turning complex ideas into simple interfaces and reliable systems that help people work smarter.",
+    "I'm Basant Mahat, a Full-Stack & SaaS developer focused on building elegant digital products, high-performance web platforms, and scalable SaaS applications. I enjoy turning complex ideas into simple interfaces and reliable systems.",
   location: 'Nepal',
-  badges: ['Full-Stack', 'AI Products', 'SaaS', 'Problem Solver'],
+  badges: ['Full-Stack', 'SaaS Platforms', 'Web Apps', 'Clean Code', 'Problem Solver'],
   stats: [],
   journey: [],
   testimonial: null,
 };
+
 
 export default function AboutPage() {
   const [about, setAbout] = useState(defaultAbout);

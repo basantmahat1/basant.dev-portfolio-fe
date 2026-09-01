@@ -64,9 +64,10 @@ export default function AdminLayout() {
                 Basant Mahat
               </div>
               <div className="truncate text-[10px] font-medium text-tertiary">
-                Full-Stack Developer
+                Full-Stack &amp; SaaS Developer
               </div>
             </div>
+
 
           </div>
         </div>

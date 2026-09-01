@@ -67,10 +67,10 @@ export default function ProjectsPage() {
           <div className="section-label justify-center">Case Studies</div>
           <h1 className="section-title justify-center text-2xl sm:text-3xl md:text-4xl">All Projects</h1>
           <p className="mx-auto max-w-lg text-xs leading-relaxed text-text-secondary sm:text-sm">
-            A collection of products I&apos;ve designed, built, and shipped — from AI tools to
-            full-stack SaaS platforms.
+            A collection of products I&apos;ve designed, built, and shipped — from full-stack SaaS platforms to modern web applications.
           </p>
         </motion.div>
+
 
         <div className="mb-8 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap justify-center gap-1.5 sm:justify-start sm:gap-2">

@@ -150,22 +150,23 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Basant Mahat — Full-Stack Developer</title>
-        <meta name="description" content="Portfolio & case studies of Basant Mahat, a passionate Full-Stack Developer building modern web applications and SaaS platforms." />
+        <title>Basant Mahat — Full-Stack &amp; SaaS Developer</title>
+        <meta name="description" content="Portfolio & case studies of Basant Mahat, a Full-Stack & SaaS Developer building modern web applications, scalable SaaS platforms, and digital products." />
       </Helmet>
 
       <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-8 sm:py-14 md:grid-cols-2">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(214,112,73,0.1)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-tertiary shadow-sm">
             <span className="inline-block h-2 w-2 rounded-full bg-tertiary animate-pulse" />
-            Full-Stack Developer
+            Full-Stack &amp; SaaS Developer
           </div>
           <h1 className="mb-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             Hello, my name is <em className="italic text-tertiary">Basant Mahat</em>.
           </h1>
           <p className="mb-6 max-w-md text-sm leading-relaxed text-text-secondary sm:mb-8 sm:text-base">
-            I&apos;m a Full-Stack Developer passionate about crafting modern, scalable web applications, clean architectures, and intuitive digital experiences.
+            I&apos;m a Full-Stack &amp; SaaS Developer passionate about building high-performance SaaS platforms, scalable web applications, and intuitive digital experiences.
           </p>
+
 
 
           <div className="mb-6 flex flex-wrap gap-3 sm:mb-7 sm:gap-4">
@@ -184,10 +185,10 @@ export default function Home() {
 
           <div className="flex gap-2.5 sm:gap-3">
             {[
-              { icon: FaGithub,    key: 'github',    color: '#333' },
-              { icon: FaLinkedin,  key: 'linkedin',  color: '#0A66C2' },
+              { icon: FaGithub, key: 'github', color: '#333' },
+              { icon: FaLinkedin, key: 'linkedin', color: '#0A66C2' },
               { icon: FaInstagram, key: 'instagram', color: '#E4405F' },
-              { icon: FaEnvelope,  key: 'email',     color: 'var(--tertiary)' },
+              { icon: FaEnvelope, key: 'email', color: 'var(--tertiary)' },
             ].map(({ icon: Icon, key, color }) => {
               const url = about.social?.[key];
               let href = '#';

@@ -41,7 +41,7 @@ export default function Footer() {
             Basant.dev
           </div>
           <p className="leading-relaxed text-text-secondary">
-            Full-Stack Developer building modern, scalable web applications and digital experiences.
+            Full-Stack &amp; SaaS Developer building modern, scalable web applications, SaaS platforms, and digital experiences.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {[
@@ -100,7 +100,7 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <a href="/projects" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
-                Full-Stack Web Dev
+                SaaS &amp; Web Development
               </a>
             </li>
             <li>
@@ -110,6 +110,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
+
 
 
         <div>

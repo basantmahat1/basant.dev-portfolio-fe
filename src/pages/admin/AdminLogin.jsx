@@ -25,7 +25,7 @@ export default function AdminLogin() {
           setAboutPhoto(data.avatar || data.heroImage);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const onSubmit = async (values) => {
