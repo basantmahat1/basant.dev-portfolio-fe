@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
-import { FaFolderOpen, FaSignOutAlt, FaHome, FaUserCircle, FaEdit } from 'react-icons/fa';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { FaFolderOpen, FaSignOutAlt, FaHome, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import useAuth from '../../hooks/useAuth';
 import { fetchAbout } from '../../services/aboutService';
@@ -13,7 +13,9 @@ const navItems = [
 export default function AdminLayout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [about, setAbout] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const loadAbout = async () => {
@@ -30,6 +32,11 @@ export default function AdminLayout() {
     return () => window.removeEventListener('about-section-updated', loadAbout);
   }, []);
 
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
   const handleLogout = async () => {
     await logout();
     toast.success('Logged out');
@@ -38,79 +45,120 @@ export default function AdminLayout() {
 
   const avatarSrc = about?.avatar || about?.heroImage;
 
-  return (
-    <div className="flex min-h-screen">
-      <aside className="flex w-64 shrink-0 flex-col border-r border-[var(--border)] bg-[rgba(249,238,217,0.6)] p-5">
-        {/* Profile Card with About Me Photo */}
-        <div className="shell mb-6">
-          <div className="glass flex items-center gap-3 p-3">
-            <div className="relative">
-              {avatarSrc ? (
-                <img
-                  src={avatarSrc}
-                  alt="Admin Avatar"
-                  className="h-11 w-11 rounded-full object-cover ring-2 ring-tertiary shadow-sm"
-                />
-              ) : (
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-tertiary/20 font-display font-bold text-tertiary">
-                  B
-                </div>
-              )}
-              <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[var(--bg-main)] bg-emerald-500" />
-            </div>
-
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-xs font-bold text-text-primary">
-                Basant Mahat
+  const SidebarContent = () => (
+    <div className="flex h-full flex-col p-5">
+      {/* Profile Card */}
+      <div className="shell mb-6">
+        <div className="glass flex items-center gap-3 p-3">
+          <div className="relative shrink-0">
+            {avatarSrc ? (
+              <img
+                src={avatarSrc}
+                alt="Admin Avatar"
+                className="h-11 w-11 rounded-full object-cover ring-2 ring-tertiary shadow-sm"
+              />
+            ) : (
+              <div className="grid h-11 w-11 place-items-center rounded-full bg-tertiary/20 font-display font-bold text-tertiary">
+                B
               </div>
-              <div className="truncate text-[10px] font-medium text-tertiary">
-                Full-Stack &amp; SaaS Developer
-              </div>
-            </div>
-
-
+            )}
+            <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[var(--bg-main)] bg-emerald-500" />
           </div>
-        </div>
 
-        <nav className="flex-1 space-y-1">
-          {navItems.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition ${isActive
-                  ? 'bg-tertiary text-white'
-                  : 'text-text-primary hover:bg-[rgba(214,112,73,0.1)]'
-                }`
-              }
-            >
-              <Icon size={14} /> {label}
-            </NavLink>
-          ))}
-        </nav>
+          <div className="min-w-0 flex-1">
+            <div className="truncate text-xs font-bold text-text-primary">Basant Mahat</div>
+            <div className="truncate text-[10px] font-medium text-tertiary">Full-Stack Developer</div>
+          </div>
 
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mb-2 flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-text-primary hover:bg-[rgba(214,112,73,0.1)]"
-        >
-          <FaHome size={14} /> View Live Site
-        </a>
-
-        <div className="border-t border-[var(--border)] pt-3">
+          {/* Close button — mobile only */}
           <button
-            onClick={handleLogout}
-            className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-text-primary hover:bg-[rgba(214,112,73,0.1)]"
+            onClick={() => setSidebarOpen(false)}
+            className="ml-auto md:hidden text-text-secondary hover:text-tertiary transition"
+            aria-label="Close sidebar"
           >
-            <FaSignOutAlt size={14} /> Logout
+            <FaTimes size={16} />
           </button>
         </div>
+      </div>
+
+      <nav className="flex-1 space-y-1">
+        {navItems.map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition ${
+                isActive
+                  ? 'bg-tertiary text-white'
+                  : 'text-text-primary hover:bg-[rgba(214,112,73,0.1)]'
+              }`
+            }
+          >
+            <Icon size={14} /> {label}
+          </NavLink>
+        ))}
+      </nav>
+
+      <a
+        href="/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-2 flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-text-primary hover:bg-[rgba(214,112,73,0.1)]"
+      >
+        <FaHome size={14} /> View Live Site
+      </a>
+
+      <div className="border-t border-[var(--border)] pt-3">
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-text-primary hover:bg-[rgba(214,112,73,0.1)]"
+        >
+          <FaSignOutAlt size={14} /> Logout
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="flex min-h-screen">
+      {/* ── Mobile overlay backdrop ── */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-20 bg-black/40 backdrop-blur-sm md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* ── Sidebar ── */}
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-30 w-64 shrink-0 border-r border-[var(--border)]
+          bg-[rgba(249,238,217,0.95)] backdrop-blur-md transition-transform duration-300
+          md:static md:translate-x-0 md:backdrop-blur-none md:bg-[rgba(249,238,217,0.6)]
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}
+      >
+        <SidebarContent />
       </aside>
 
-      <main className="flex-1 overflow-y-auto bg-background p-8">
-        <Outlet />
-      </main>
+      {/* ── Main content ── */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Mobile top bar */}
+        <header className="flex items-center gap-3 border-b border-[var(--border)] bg-[rgba(249,238,217,0.6)] px-4 py-3 md:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="grid h-9 w-9 place-items-center rounded-md border border-[var(--border)] text-text-primary hover:border-tertiary hover:text-tertiary transition"
+            aria-label="Open sidebar"
+          >
+            <FaBars size={16} />
+          </button>
+          <span className="font-display text-sm font-bold text-text-primary">Admin Panel</span>
+        </header>
+
+        <main className="flex-1 overflow-y-auto bg-background p-4 sm:p-6 md:p-8">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

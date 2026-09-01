@@ -158,7 +158,7 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(214,112,73,0.1)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-tertiary shadow-sm">
             <span className="inline-block h-2 w-2 rounded-full bg-tertiary animate-pulse" />
-            Full-Stack &amp; SaaS Developer
+            Full-Stack Developer
           </div>
           <h1 className="mb-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             Hello, my name is <em className="italic text-tertiary">Basant Mahat</em>.
