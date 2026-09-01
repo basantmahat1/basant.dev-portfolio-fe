@@ -111,7 +111,7 @@ export default function Preloader({ onComplete }) {
                 Basant<span className="text-[color:var(--tertiary)]">.dev</span>
               </h2>
               <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-[color:var(--text-secondary)]">
-                Full-Stack &amp; SaaS Developer
+                Full-Stack Developer
               </p>
 
 

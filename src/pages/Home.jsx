@@ -151,7 +151,7 @@ export default function Home() {
     <>
       <Helmet>
         <title>Basant Mahat — Full-Stack &amp; SaaS Developer</title>
-        <meta name="description" content="Portfolio & case studies of Basant Mahat, a Full-Stack & SaaS Developer building modern web applications, scalable SaaS platforms, and digital products." />
+        <meta name="description" content="Portfolio & case studies of Basant Mahat, a Full-Stack  Developer building modern web applications, scalable SaaS platforms, and digital products." />
       </Helmet>
 
       <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-8 sm:py-14 md:grid-cols-2">
@@ -164,7 +164,7 @@ export default function Home() {
             Hello, my name is <em className="italic text-tertiary">Basant Mahat</em>.
           </h1>
           <p className="mb-6 max-w-md text-sm leading-relaxed text-text-secondary sm:mb-8 sm:text-base">
-            I&apos;m a Full-Stack &amp; SaaS Developer passionate about building high-performance SaaS platforms, scalable web applications, and intuitive digital experiences.
+            I&apos;m a Full-Stack  Developer passionate about building high-performance SaaS platforms, scalable web applications, and intuitive digital experiences.
           </p>
 
 
