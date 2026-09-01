@@ -153,34 +153,34 @@ export default function Home() {
         <title>Basant.dev — AI Software Engineer</title>
       </Helmet>
 
-      <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-6xl grid-cols-1 items-center gap-10 px-8 py-14 md:grid-cols-2">
+      <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-8 sm:py-14 md:grid-cols-2">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-tertiary">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-tertiary sm:mb-3">
             AI Software Engineer
           </div>
-          <h1 className="mb-5 font-display text-4xl font-bold leading-tight md:text-5xl">
+          <h1 className="mb-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             I build <em className="italic text-tertiary">AI-powered</em> products that solve
             real-world problems.
           </h1>
-          <p className="mb-8 max-w-md text-base text-text-secondary">
+          <p className="mb-6 max-w-md text-sm leading-relaxed text-text-secondary sm:mb-8 sm:text-base">
             Full-stack developer specializing in modern tech stack &amp; AI integration. I craft
             clean code and intuitive digital experiences.
           </p>
 
-          <div className="mb-7 flex flex-wrap gap-4">
-            <Link to="/projects" className="btn-primary">
-              View My Work <FaArrowRight size={12} />
+          <div className="mb-6 flex flex-wrap gap-3 sm:mb-7 sm:gap-4">
+            <Link to="/projects" className="btn-primary text-xs sm:text-sm">
+              View My Work <FaArrowRight size={11} />
             </Link>
             <a
               href={about.resumeUrl || '/resume.pdf'}
               download={about.resumeName || 'Basant_Resume.pdf'}
-              className="btn-secondary"
+              className="btn-secondary text-xs sm:text-sm"
             >
-              Download Resume <FaDownload size={12} />
+              Download Resume <FaDownload size={11} />
             </a>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2.5 sm:gap-3">
             {[
               { icon: FaGithub,    key: 'github',    color: '#333' },
               { icon: FaLinkedin,  key: 'linkedin',  color: '#0A66C2' },
@@ -216,11 +216,11 @@ export default function Home() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="relative flex items-center justify-center py-2 px-4"
+          className="relative flex items-center justify-center py-2 px-2 sm:px-4"
         >
           {heroPhotoSrc && (
-            <div className="shell relative z-10 w-full max-w-[320px] md:max-w-[360px] aspect-[4/4.8] !rounded-[36px] p-[2px] shadow-2xl">
-              <div className="glass h-full w-full overflow-hidden !rounded-[34px] border-2 border-[var(--tertiary)] flex items-end justify-center">
+            <div className="shell relative z-10 w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] aspect-[4/4.8] !rounded-[32px] sm:!rounded-[36px] p-[2px] shadow-2xl">
+              <div className="glass h-full w-full overflow-hidden !rounded-[30px] sm:!rounded-[34px] border-2 border-[var(--tertiary)] flex items-end justify-center">
                 <img
                   src={heroPhotoSrc}
                   alt="Basant"
@@ -234,7 +234,7 @@ export default function Home() {
 
       <section className="section-block" id="about">
         <div className="shell animate-scroll">
-          <div className="glass" style={{ padding: '18px 18px 16px' }}>
+          <div className="glass p-4 sm:p-5 md:p-6">
             <div className="about-grid">
               <div className="avatar-card">
                 {avatarPhotoSrc && (
@@ -259,7 +259,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <a href="#contact" className="btn-primary" style={{ padding: '6px 14px', fontSize: '12px' }}>
+                <a href="#contact" className="btn-primary inline-flex text-xs">
                   More About Me <FaArrowRight size={10} />
                 </a>
               </div>
@@ -344,7 +344,7 @@ export default function Home() {
               <div className="pill-item">
                 <FaMapMarkerAlt /> {about.contact.city}
               </div>
-              <a href="mailto:hello@basant.dev" className="btn-primary" style={{ padding: '6px 14px', fontSize: '11px' }}>
+              <a href="mailto:hello@basant.dev" className="btn-primary text-xs">
                 Get In Touch <FaPaperPlane size={10} />
               </a>
             </div>
@@ -352,11 +352,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-8 pb-20" id="featured-projects">
-        <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-8 sm:pb-20" id="featured-projects">
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="section-label">Selected Works</div>
-            <h2 className="section-title !mb-0 text-3xl">Featured Projects</h2>
+            <h2 className="section-title !mb-0 text-2xl sm:text-3xl">Featured Projects</h2>
           </div>
           <Link
             to="/projects"
@@ -376,7 +376,7 @@ export default function Home() {
           </div>
         ) : featuredProjects.length === 0 ? (
           <div className="shell">
-            <div className="glass rounded-2xl p-10 text-center text-text-secondary">
+            <div className="glass rounded-2xl p-8 text-center text-sm text-text-secondary sm:p-10">
               No projects found yet. Visit the{' '}
               <Link to="/projects" className="font-semibold text-tertiary">
                 Projects page
@@ -392,6 +392,7 @@ export default function Home() {
           </div>
         )}
       </section>
+
     </>
   );
 }

@@ -52,14 +52,15 @@ export default function SkillsPage() {
     : skillsData.filter((s) => s.category === selectedCategory);
 
   return (
-    <section className="mx-auto max-w-6xl px-8 py-16">
-      <div className="mb-10 text-center">
+    <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
+      <div className="mb-8 text-center sm:mb-10">
         <div className="section-label">Skills &amp; Tech Stack</div>
-        <h1 className="section-title mb-3 text-4xl">What I work with</h1>
-        <p className="mx-auto max-w-lg text-sm text-text-secondary">
+        <h1 className="section-title mb-3 text-3xl sm:text-4xl">What I work with</h1>
+        <p className="mx-auto max-w-lg text-xs leading-relaxed text-text-secondary sm:text-sm">
           A curated collection of languages, frameworks, databases, and tools I use to build robust digital products.
         </p>
       </div>
+
 
       {/* Category Tabs */}
       <div className="mb-10 flex flex-wrap justify-center gap-2">

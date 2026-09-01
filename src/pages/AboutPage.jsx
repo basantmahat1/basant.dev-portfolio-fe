@@ -56,10 +56,10 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <section className="mx-auto max-w-5xl px-8 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
       <div className="mb-8 text-center">
         <div className="section-label">About</div>
-        <h1 className="section-title mb-3 text-4xl">{about.title}</h1>
+        <h1 className="section-title mb-3 text-3xl sm:text-4xl">{about.title}</h1>
         {about.location && (
           <div className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[rgba(214,112,73,0.08)] px-3 py-1 text-xs font-semibold text-tertiary">
             <FaMapMarkerAlt size={12} /> {about.location}
@@ -67,16 +67,16 @@ export default function AboutPage() {
         )}
       </div>
 
-      <div className="shell mb-12">
-        <div className="glass grid gap-8 p-8 md:grid-cols-[220px_1fr] items-center">
+      <div className="shell mb-8 sm:mb-12">
+        <div className="glass grid gap-6 p-5 sm:p-8 md:grid-cols-[200px_1fr] items-center">
           {about.avatar ? (
             <img
               src={about.avatar}
               alt="Basant"
-              className="mx-auto h-52 w-52 rounded-full object-cover border-4 border-[var(--border)] shadow-lg md:mx-0"
+              className="mx-auto h-40 w-40 rounded-full object-cover border-4 border-[var(--border)] shadow-lg sm:h-48 sm:w-48 md:mx-0"
             />
           ) : (
-            <div className="mx-auto grid h-52 w-52 place-items-center rounded-full bg-tertiary/10 border-4 border-[var(--border)] font-display text-4xl font-bold text-tertiary md:mx-0">
+            <div className="mx-auto grid h-40 w-40 place-items-center rounded-full bg-tertiary/10 border-4 border-[var(--border)] font-display text-4xl font-bold text-tertiary sm:h-48 sm:w-48 md:mx-0">
               B
             </div>
           )}
@@ -86,22 +86,22 @@ export default function AboutPage() {
               {about.description}
             </p>
 
-            <div className="mb-8 flex flex-wrap gap-2">
+            <div className="mb-6 flex flex-wrap gap-1.5 sm:mb-8 sm:gap-2">
               {about.badges.map((badge) => (
-                <span key={badge} className="tag px-3 py-1 text-xs font-semibold">
+                <span key={badge} className="tag px-2.5 py-0.5 text-xs font-semibold sm:px-3 sm:py-1">
                   {badge}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex flex-wrap gap-3 items-center">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2"
+                className="btn-primary inline-flex items-center gap-2 text-xs sm:text-sm"
               >
-                Let&apos;s Talk <FaWhatsapp size={15} />
+                Let&apos;s Talk <FaWhatsapp size={14} />
               </a>
 
               {resumeUrl && (
@@ -109,9 +109,9 @@ export default function AboutPage() {
                   href={resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary inline-flex items-center gap-2 text-xs"
+                  className="btn-secondary inline-flex items-center gap-2 text-xs sm:text-sm"
                 >
-                  Download Resume <FaDownload size={12} />
+                  Download Resume <FaDownload size={11} />
                 </a>
               )}
             </div>
@@ -121,12 +121,12 @@ export default function AboutPage() {
 
       {/* Stats Cards */}
       {about.stats?.length > 0 && (
-        <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="mb-8 grid grid-cols-2 gap-3 sm:mb-12 sm:grid-cols-4 sm:gap-4">
           {about.stats.map((stat, i) => (
             <div key={i} className="shell">
-              <div className="glass p-5 text-center">
-                <div className="font-display text-2xl font-bold text-tertiary">{stat.value}</div>
-                <div className="mt-1 text-xs text-text-secondary">{stat.label}</div>
+              <div className="glass p-4 text-center sm:p-5">
+                <div className="font-display text-xl font-bold text-tertiary sm:text-2xl">{stat.value}</div>
+                <div className="mt-1 text-[11px] text-text-secondary sm:text-xs">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -135,14 +135,14 @@ export default function AboutPage() {
 
       {/* Journey Timeline */}
       {about.journey?.length > 0 && (
-        <div className="shell mb-12">
-          <div className="glass p-8">
-            <h3 className="mb-6 font-display text-xl font-bold flex items-center gap-2">
+        <div className="shell mb-8 sm:mb-12">
+          <div className="glass p-5 sm:p-8">
+            <h3 className="mb-6 font-display text-lg font-bold flex items-center gap-2 sm:text-xl">
               <FaCalendarAlt className="text-tertiary" /> My Journey
             </h3>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-4">
               {about.journey.map((step, i) => (
-                <div key={i} className="rounded-xl border border-[var(--border)] bg-[rgba(249,238,217,0.4)] dark:bg-white/5 p-4">
+                <div key={i} className="rounded-xl border border-[var(--border)] bg-[rgba(249,238,217,0.4)] dark:bg-white/5 p-3.5 sm:p-4">
                   <div className="font-display text-sm font-bold text-tertiary">{step.year}</div>
                   <div className="mt-1 text-xs text-text-secondary">{step.label}</div>
                 </div>
@@ -155,7 +155,7 @@ export default function AboutPage() {
       {/* Testimonial */}
       {about.testimonial?.quote && (
         <div className="shell">
-          <div className="glass p-8 text-center max-w-2xl mx-auto">
+          <div className="glass p-6 text-center max-w-2xl mx-auto sm:p-8">
             <div className="mb-3 flex justify-center text-amber-500 gap-1">
               {[...Array(5)].map((_, i) => (
                 <FaStar key={i} size={14} />
@@ -172,5 +172,6 @@ export default function AboutPage() {
         </div>
       )}
     </section>
+
   );
 }

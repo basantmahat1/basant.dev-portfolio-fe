@@ -7,20 +7,20 @@ export default function ExperiencePage() {
   ];
 
   return (
-    <section className="mx-auto max-w-5xl px-8 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
       <div className="mb-8 text-center">
         <div className="section-label">Experience</div>
-        <h1 className="section-title mb-3 text-4xl">My Journey</h1>
+        <h1 className="section-title mb-3 text-3xl sm:text-4xl">My Journey</h1>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-4 sm:space-y-5">
         {timeline.map((item) => (
           <div key={item.year} className="shell">
-            <div className="glass flex gap-5 p-6">
-              <div className="min-w-[70px] text-sm font-bold text-tertiary">{item.year}</div>
+            <div className="glass flex flex-col gap-2 p-4 sm:flex-row sm:gap-5 sm:p-6">
+              <div className="min-w-[60px] text-sm font-bold text-tertiary sm:min-w-[70px]">{item.year}</div>
               <div>
-                <h3 className="mb-1 font-display text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm leading-6 text-text-secondary">{item.text}</p>
+                <h3 className="mb-1 font-display text-base font-semibold sm:text-lg">{item.title}</h3>
+                <p className="text-xs leading-relaxed text-text-secondary sm:text-sm sm:leading-6">{item.text}</p>
               </div>
             </div>
           </div>
@@ -28,4 +28,5 @@ export default function ExperiencePage() {
       </div>
     </section>
   );
+
 }
