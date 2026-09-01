@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const loadingSteps = [
   'Initializing workspace...',
-  'Loading creative modules...',
-  'Connecting AI systems...',
+  'Loading projects & modules...',
+  'Connecting cloud systems...',
   'Preparing experience...',
 ];
 
@@ -111,8 +111,9 @@ export default function Preloader({ onComplete }) {
                 Basant<span className="text-[color:var(--tertiary)]">.dev</span>
               </h2>
               <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-[color:var(--text-secondary)]">
-                Software Engineer
+                Full-Stack &amp; SaaS Developer
               </p>
+
 
               {/* Progress Bar Container */}
               <div className="mt-7 w-full space-y-2">
