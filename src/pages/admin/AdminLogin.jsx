@@ -60,9 +60,10 @@ export default function AdminLogin() {
                 <FaLock size={22} />
               </div>
             )}
-            <h1 className="font-display text-xl font-semibold">Admin Sign In</h1>
-            <p className="text-xs text-text-secondary">Manage your portfolio &amp; about section</p>
+            <h1 className="font-display text-xl font-bold">Basant Mahat</h1>
+            <p className="text-xs font-semibold text-tertiary">Full-Stack Developer — Admin Portal</p>
           </div>
+
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>

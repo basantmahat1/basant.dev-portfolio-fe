@@ -61,13 +61,13 @@ export default function AdminLayout() {
 
             <div className="min-w-0 flex-1">
               <div className="truncate text-xs font-bold text-text-primary">
-                {about?.title ? 'Basant Mahat' : 'Admin'}
+                Basant Mahat
               </div>
-              <div className="truncate text-[10px] text-text-secondary">
-                {user?.email || 'Portfolio Admin'}
+              <div className="truncate text-[10px] font-medium text-tertiary">
+                Full-Stack Developer
               </div>
-
             </div>
+
           </div>
         </div>
 

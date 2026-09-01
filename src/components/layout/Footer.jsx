@@ -41,7 +41,7 @@ export default function Footer() {
             Basant.dev
           </div>
           <p className="leading-relaxed text-text-secondary">
-            I build AI-powered products that solve real-world problems.
+            Full-Stack Developer building modern, scalable web applications and digital experiences.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {[
@@ -83,6 +83,11 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a href="/about" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
+                About
+              </a>
+            </li>
+            <li>
               <a href="/projects" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
                 Projects
               </a>
@@ -94,17 +99,18 @@ export default function Footer() {
           <h4 className="mb-3 font-display text-sm font-bold text-text-primary">Services</h4>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
-                Web Development
+              <a href="/projects" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
+                Full-Stack Web Dev
               </a>
             </li>
             <li>
-              <a href="#" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
-                AI Integration
+              <a href="/skills" className="inline-block text-text-secondary transition-all duration-300 hover:text-tertiary hover:translate-x-1">
+                API &amp; Cloud Integration
               </a>
             </li>
           </ul>
         </div>
+
 
         <div>
           <h4 className="mb-3 font-display text-sm font-bold text-text-primary">Resources</h4>
