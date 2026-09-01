@@ -150,21 +150,21 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Basant.dev — AI Software Engineer</title>
+        <title>Basant Mahat — Full-Stack Developer</title>
+        <meta name="description" content="Portfolio & case studies of Basant Mahat, a passionate Full-Stack Developer building modern web applications and SaaS platforms." />
       </Helmet>
 
       <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-8 sm:py-14 md:grid-cols-2">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-tertiary sm:mb-3">
-            AI Software Engineer
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(214,112,73,0.1)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-tertiary shadow-sm">
+            <span className="inline-block h-2 w-2 rounded-full bg-tertiary animate-pulse" />
+            Basant Mahat
           </div>
           <h1 className="mb-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-            I build <em className="italic text-tertiary">AI-powered</em> products that solve
-            real-world problems.
+            I build modern, scalable products as a <em className="italic text-tertiary">Full-Stack Developer</em>.
           </h1>
           <p className="mb-6 max-w-md text-sm leading-relaxed text-text-secondary sm:mb-8 sm:text-base">
-            Full-stack developer specializing in modern tech stack &amp; AI integration. I craft
-            clean code and intuitive digital experiences.
+            Passionate about crafting high-performance web applications, clean backend architectures, and intuitive user experiences.
           </p>
 
           <div className="mb-6 flex flex-wrap gap-3 sm:mb-7 sm:gap-4">
@@ -179,6 +179,7 @@ export default function Home() {
               Download Resume <FaDownload size={11} />
             </a>
           </div>
+
 
           <div className="flex gap-2.5 sm:gap-3">
             {[
