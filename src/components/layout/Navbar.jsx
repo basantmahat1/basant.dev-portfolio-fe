@@ -143,36 +143,66 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="border-t border-[var(--border)] bg-[color:var(--panel)] px-4 py-4 backdrop-blur-xl md:hidden">
-          <div className="flex flex-col gap-1.5">
-            {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-                    isActive
-                      ? 'bg-tertiary text-white shadow-sm'
-                      : 'text-[color:var(--text-primary)] hover:bg-tertiary/10'
-                  }`
-                }
-              >
-                <span>{link.label}</span>
-              </NavLink>
-            ))}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-tertiary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:brightness-110"
-            >
-              <FaWhatsapp size={16} /> Let&apos;s Talk on WhatsApp
-            </a>
-          </div>
+      {/* Mobile Drawer — slides in from RIGHT side */}
+      {/* Backdrop */}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        className={`fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      />
+
+      {/* Drawer Panel */}
+      <div
+        className={`fixed top-0 right-0 z-[95] flex h-full w-[280px] flex-col border-l border-[var(--border)] bg-[color:var(--panel)] shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
+          <span className="font-display text-base font-bold text-text-primary">Menu</span>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setMobileMenuOpen(false)}
+            className="grid h-8 w-8 place-items-center rounded-xl border border-[var(--border)] text-text-primary hover:bg-tertiary/10 hover:text-tertiary transition"
+          >
+            <FaTimes size={14} />
+          </button>
         </div>
-      )}
+
+        {/* Nav Links */}
+        <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                  isActive
+                    ? 'bg-tertiary text-white shadow-sm'
+                    : 'text-[color:var(--text-primary)] hover:bg-tertiary/10 hover:text-tertiary'
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Drawer Footer */}
+        <div className="border-t border-[var(--border)] p-4">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-tertiary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:brightness-110 transition"
+          >
+            <FaWhatsapp size={16} /> Let&apos;s Talk on WhatsApp
+          </a>
+        </div>
+      </div>
     </header>
   );
 }

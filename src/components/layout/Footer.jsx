@@ -26,8 +26,9 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-[var(--border)] bg-transparent px-8 pb-6 pt-10 text-text-primary">
-      <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-6 text-xs md:grid-cols-5">
-        <div>
+      <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-6 text-xs sm:grid-cols-2 md:grid-cols-5">
+        {/* Brand + social - full width on mobile, spans 2 cols on tablet */}
+        <div className="sm:col-span-2 md:col-span-1">
           <div className="mb-2 flex items-center gap-2 font-display text-base font-bold text-text-primary">
             {avatar ? (
               <img
@@ -43,7 +44,7 @@ export default function Footer() {
           <p className="leading-relaxed text-text-secondary">
             Full-Stack  Developer building modern, scalable web applications, SaaS platforms, and digital experiences.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-4 flex flex-nowrap gap-2.5">
             {[
               { key: 'github',    Icon: FaGithub,    lightColor: '#1a1a1a', darkColor: '#e5e5e5', hoverBg: '#1a1a1a' },
               { key: 'linkedin',  Icon: FaLinkedin,  lightColor: '#0A66C2', darkColor: '#4d9de0', hoverBg: '#0A66C2' },
