@@ -14,8 +14,9 @@ import {
   FaDownload,
   FaTrash,
   FaUpload,
+  FaSpinner,
 } from 'react-icons/fa';
-import { fetchAbout, updateAbout } from '../../services/aboutService';
+import { fetchAbout, updateAbout, uploadAboutMedia } from '../../services/aboutService';
 
 const defaultData = {
   title: 'About Me 👋',
@@ -63,6 +64,10 @@ const defaultData = {
 export default function AboutSectionEditor() {
   const navigate = useNavigate();
   const [form, setForm] = useState(defaultData);
+  const [saving, setSaving] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [uploadingHero, setUploadingHero] = useState(false);
+  const [uploadingTestimonial, setUploadingTestimonial] = useState(false);
 
   useEffect(() => {
     const loadAbout = async () => {
@@ -91,93 +96,105 @@ export default function AboutSectionEditor() {
       [group]: { ...prev[group], [field]: value },
     }));
 
-  const compressImage = (file, maxWidth = 1200, quality = 0.9) => {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (file.type === 'image/png' && file.size < 3 * 1024 * 1024) {
-          resolve(e.target.result);
-          return;
-        }
-
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let width = img.width;
-          let height = img.height;
-
-          if (width > maxWidth) {
-            height = Math.round((height * maxWidth) / width);
-            width = maxWidth;
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-
-          const ctx = canvas.getContext('2d');
-          ctx.clearRect(0, 0, width, height);
-          ctx.drawImage(img, 0, 0, width, height);
-          const isPng = file.type === 'image/png' || (!file.type && file.name?.endsWith('.png'));
-          const mimeType = isPng ? 'image/png' : 'image/webp';
-          resolve(canvas.toDataURL(mimeType, quality));
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    setUploadingAvatar(true);
+    const toastId = toast.loading('Uploading profile photo to Cloudinary...');
     try {
-      const compressed = await compressImage(file, 800, 0.85);
-      updateField('avatar', compressed);
-      toast.success('Profile photo selected');
+      const updated = await uploadAboutMedia('avatar', file);
+      if (updated?.avatar) {
+        updateField('avatar', updated.avatar);
+      }
+      toast.success('Profile photo uploaded and saved!', { id: toastId });
+      window.dispatchEvent(new Event('about-section-updated'));
     } catch (err) {
-      console.error('Photo processing failed', err);
-      toast.error('Failed to process image');
+      console.error('Cloudinary upload failed, falling back to local encoding', err);
+      try {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          updateField('avatar', e.target.result);
+          toast.success('Profile photo selected (click Save to store)', { id: toastId });
+        };
+        reader.readAsDataURL(file);
+      } catch (e) {
+        toast.error('Failed to process image', { id: toastId });
+      }
+    } finally {
+      setUploadingAvatar(false);
+      event.target.value = '';
     }
-    event.target.value = '';
   };
 
   const handleHeroImageUpload = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    setUploadingHero(true);
+    const toastId = toast.loading('Uploading hero photo to Cloudinary...');
     try {
-      const compressed = await compressImage(file, 1000, 0.85);
-      updateField('heroImage', compressed);
-      toast.success('Hero photo selected');
+      const updated = await uploadAboutMedia('hero', file);
+      if (updated?.heroImage) {
+        updateField('heroImage', updated.heroImage);
+      }
+      toast.success('Hero photo uploaded and saved!', { id: toastId });
+      window.dispatchEvent(new Event('about-section-updated'));
     } catch (err) {
-      console.error('Hero photo processing failed', err);
-      toast.error('Failed to process hero image');
+      console.error('Cloudinary upload failed, falling back to local encoding', err);
+      try {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          updateField('heroImage', e.target.result);
+          toast.success('Hero photo selected (click Save to store)', { id: toastId });
+        };
+        reader.readAsDataURL(file);
+      } catch (e) {
+        toast.error('Failed to process image', { id: toastId });
+      }
+    } finally {
+      setUploadingHero(false);
+      event.target.value = '';
     }
-    event.target.value = '';
   };
 
   const handleTestimonialAvatarUpload = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    setUploadingTestimonial(true);
+    const toastId = toast.loading('Uploading testimonial photo...');
     try {
-      const compressed = await compressImage(file, 400, 0.85);
-      updateNested('testimonial', 'avatar', compressed);
-      toast.success('Testimonial avatar selected');
+      const updated = await uploadAboutMedia('testimonial', file);
+      if (updated?.testimonial?.avatar) {
+        updateNested('testimonial', 'avatar', updated.testimonial.avatar);
+      }
+      toast.success('Testimonial avatar uploaded and saved!', { id: toastId });
+      window.dispatchEvent(new Event('about-section-updated'));
     } catch (err) {
-      console.error('Testimonial avatar processing failed', err);
-      toast.error('Failed to process testimonial photo');
+      console.error('Upload failed', err);
+      try {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          updateNested('testimonial', 'avatar', e.target.result);
+          toast.success('Testimonial photo selected (click Save to store)', { id: toastId });
+        };
+        reader.readAsDataURL(file);
+      } catch (e) {
+        toast.error('Failed to process testimonial photo', { id: toastId });
+      }
+    } finally {
+      setUploadingTestimonial(false);
+      event.target.value = '';
     }
-    event.target.value = '';
   };
 
   const handleResumeUpload = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 20 * 1024 * 1024) {
-      toast.error('Resume file must be less than 20MB');
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Resume file must be less than 10MB');
       return;
     }
 
@@ -185,7 +202,7 @@ export default function AboutSectionEditor() {
     reader.onload = (e) => {
       updateField('resumeUrl', e.target.result);
       updateField('resumeName', file.name);
-      toast.success(`Resume uploaded: ${file.name}`);
+      toast.success(`Resume selected: ${file.name} (Click Save Changes)`);
     };
     reader.onerror = () => {
       toast.error('Failed to read resume file');
@@ -197,19 +214,27 @@ export default function AboutSectionEditor() {
   const handleRemoveResume = () => {
     updateField('resumeUrl', '');
     updateField('resumeName', '');
-    toast.success('Resume removed');
+    toast.success('Resume removed (Click Save Changes to apply)');
   };
 
   const handleSave = async () => {
+    setSaving(true);
+    const toastId = toast.loading('Saving about section to database...');
     try {
-      await updateAbout(form);
+      const result = await updateAbout(form);
+      if (result) {
+        setForm((prev) => ({ ...prev, ...result }));
+      }
       window.dispatchEvent(new Event('about-section-updated'));
-      toast.success('About section saved');
+      toast.success('About section saved successfully!', { id: toastId });
     } catch (error) {
       console.error('Failed to save about section', error);
-      toast.error('Unable to save about section');
+      toast.error(error.response?.data?.message || 'Unable to save about section to server', { id: toastId });
+    } finally {
+      setSaving(false);
     }
   };
+
 
   const addBadge = () => updateField('badges', [...form.badges, 'New Highlight']);
   const updateBadge = (index, value) => {
@@ -244,8 +269,13 @@ export default function AboutSectionEditor() {
 
       <div className="mb-6 flex items-center justify-between">
         <h1 className="font-display text-2xl font-semibold">About Section Editor</h1>
-        <button onClick={handleSave} className="btn-primary">
-          <FaSave size={12} /> Save Changes
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="btn-primary inline-flex items-center gap-2"
+        >
+          {saving ? <FaSpinner className="animate-spin" size={13} /> : <FaSave size={12} />}
+          {saving ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
 
@@ -257,30 +287,45 @@ export default function AboutSectionEditor() {
             <div className="grid gap-6 rounded-xl border border-[var(--border)] bg-white/10 p-5 md:grid-cols-2">
               <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white/20 p-4 text-center">
                 <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">Profile Photo</span>
-                <img
-                  src={form.avatar}
-                  alt="Profile preview"
-                  className="h-28 w-28 rounded-full object-cover ring-2 ring-[var(--border)] shadow-sm"
-                />
-                <label className="btn-secondary mt-1 cursor-pointer px-4 py-2 text-xs font-medium">
-                  Choose Profile Photo
-                  <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+                {form.avatar ? (
+                  <img
+                    src={form.avatar}
+                    alt="Profile preview"
+                    className="h-28 w-28 rounded-full object-cover ring-2 ring-[var(--border)] shadow-sm"
+                  />
+                ) : (
+                  <div className="grid h-28 w-28 place-items-center rounded-full bg-tertiary/10 border-2 border-[var(--border)] font-display text-3xl font-bold text-tertiary">
+                    B
+                  </div>
+                )}
+                <label className="btn-secondary mt-1 cursor-pointer px-4 py-2 text-xs font-medium inline-flex items-center gap-2">
+                  {uploadingAvatar && <FaSpinner className="animate-spin" size={12} />}
+                  {uploadingAvatar ? 'Uploading...' : 'Choose Profile Photo'}
+                  <input type="file" accept="image/*" disabled={uploadingAvatar} className="hidden" onChange={handleImageUpload} />
                 </label>
               </div>
 
               <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-[var(--border)] bg-white/20 p-4 text-center">
                 <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">Hero Section Photo</span>
-                <img
-                  src={form.heroImage || form.avatar}
-                  alt="Hero preview"
-                  className="h-28 w-24 rounded-2xl object-cover ring-2 ring-[var(--border)] shadow-sm"
-                />
-                <label className="btn-secondary mt-1 cursor-pointer px-4 py-2 text-xs font-medium">
-                  Choose Hero Photo
-                  <input type="file" accept="image/*" className="hidden" onChange={handleHeroImageUpload} />
+                {form.heroImage || form.avatar ? (
+                  <img
+                    src={form.heroImage || form.avatar}
+                    alt="Hero preview"
+                    className="h-28 w-24 rounded-2xl object-cover ring-2 ring-[var(--border)] shadow-sm"
+                  />
+                ) : (
+                  <div className="grid h-28 w-24 place-items-center rounded-2xl bg-tertiary/10 border-2 border-[var(--border)] font-display text-3xl font-bold text-tertiary">
+                    B
+                  </div>
+                )}
+                <label className="btn-secondary mt-1 cursor-pointer px-4 py-2 text-xs font-medium inline-flex items-center gap-2">
+                  {uploadingHero && <FaSpinner className="animate-spin" size={12} />}
+                  {uploadingHero ? 'Uploading...' : 'Choose Hero Photo'}
+                  <input type="file" accept="image/*" disabled={uploadingHero} className="hidden" onChange={handleHeroImageUpload} />
                 </label>
               </div>
             </div>
+
 
             <div className="grid gap-4 md:grid-cols-2">
               <label className="text-sm">
