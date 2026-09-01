@@ -41,7 +41,7 @@ export default function Footer() {
             Basant.dev
           </div>
           <p className="leading-relaxed text-text-secondary">
-            Full-Stack &amp; SaaS Developer building modern, scalable web applications, SaaS platforms, and digital experiences.
+            Full-Stack  Developer building modern, scalable web applications, SaaS platforms, and digital experiences.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {[
