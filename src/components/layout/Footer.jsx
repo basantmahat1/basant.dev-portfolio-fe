@@ -16,7 +16,7 @@ export default function Footer() {
           setSocial(data.social || {});
           setResumeUrl(data.resumeUrl || '');
         }
-      } catch (e) {}
+      } catch (e) { }
     };
 
     load();
@@ -45,10 +45,10 @@ export default function Footer() {
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {[
-              { key: 'github',    Icon: FaGithub,    color: '#333' },
-              { key: 'linkedin',  Icon: FaLinkedin,  color: '#0A66C2' },
+              { key: 'github', Icon: FaGithub, color: '#333' },
+              { key: 'linkedin', Icon: FaLinkedin, color: '#0A66C2' },
               { key: 'instagram', Icon: FaInstagram, color: '#E4405F' },
-              { key: 'email',     Icon: FaEnvelope,  color: 'var(--tertiary)' },
+              { key: 'email', Icon: FaEnvelope, color: 'var(--tertiary)' },
             ].map(({ key, Icon, color }) => {
               const url = social[key];
               let href = '#';

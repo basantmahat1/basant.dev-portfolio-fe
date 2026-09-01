@@ -6,7 +6,7 @@ const defaultAbout = {
   title: 'About Me 👋',
   avatar: '',
   description:
-    "I'm Basant Mahat, a Full-Stack & SaaS developer focused on building elegant digital products, high-performance web platforms, and scalable SaaS applications. I enjoy turning complex ideas into simple interfaces and reliable systems.",
+    "I'm Basant Mahat, a Full-Stack developer focused on building elegant digital products, high-performance web platforms, and scalable SaaS applications. I enjoy turning complex ideas into simple interfaces and reliable systems.",
   location: 'Nepal',
   badges: ['Full-Stack', 'SaaS Platforms', 'Web Apps', 'Clean Code', 'Problem Solver'],
   stats: [],
