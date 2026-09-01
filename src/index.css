@@ -120,6 +120,32 @@ textarea::placeholder {
   animation: dash 3s linear infinite;
 }
 
+/* ---- Social Icon Buttons (Footer & About) ---- */
+/* Light mode: themed background + brand color icon */
+.social-icon-btn {
+  background-color: rgba(249, 238, 217, 0.7);
+}
+.social-icon-btn .social-icon {
+  color: var(--icon-light, var(--text-primary));
+}
+
+/* Dark mode: darker background + lighter brand color icon */
+body.dark-mode .social-icon-btn {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+body.dark-mode .social-icon-btn .social-icon {
+  color: var(--icon-dark, var(--text-primary));
+}
+
+/* Hover state: brand background + white icon */
+.social-icon-btn:hover {
+  background-color: var(--hover-bg, var(--tertiary));
+}
+.social-icon-btn:hover .social-icon {
+  color: #ffffff !important;
+}
+
+
 /* ---- Shell / Glass component system (ported 1:1 from the reference design) ---- */
 .shell {
   padding: 1px;

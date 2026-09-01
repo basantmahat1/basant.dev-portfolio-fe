@@ -43,13 +43,13 @@ export default function Footer() {
           <p className="leading-relaxed text-text-secondary">
             Full-Stack  Developer building modern, scalable web applications, SaaS platforms, and digital experiences.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2.5">
             {[
-              { key: 'github', Icon: FaGithub, color: '#333' },
-              { key: 'linkedin', Icon: FaLinkedin, color: '#0A66C2' },
-              { key: 'instagram', Icon: FaInstagram, color: '#E4405F' },
-              { key: 'email', Icon: FaEnvelope, color: 'var(--tertiary)' },
-            ].map(({ key, Icon, color }) => {
+              { key: 'github',    Icon: FaGithub,    lightColor: '#1a1a1a', darkColor: '#e5e5e5', hoverBg: '#1a1a1a' },
+              { key: 'linkedin',  Icon: FaLinkedin,  lightColor: '#0A66C2', darkColor: '#4d9de0', hoverBg: '#0A66C2' },
+              { key: 'instagram', Icon: FaInstagram, lightColor: '#E4405F', darkColor: '#f06d85', hoverBg: '#E4405F' },
+              { key: 'email',     Icon: FaEnvelope,  lightColor: 'var(--tertiary)', darkColor: 'var(--tertiary)', hoverBg: 'var(--tertiary)' },
+            ].map(({ key, Icon, lightColor, darkColor, hoverBg }) => {
               const url = social[key];
               let href = '#';
               if (url) {
@@ -65,9 +65,11 @@ export default function Footer() {
                   href={href}
                   target={url && key !== 'email' ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="group grid h-9 w-9 place-items-center rounded-full border border-[var(--border)] bg-[rgba(249,238,217,0.5)] dark:bg-white/10 text-text-primary transition-all duration-300 hover:bg-tertiary hover:scale-110 hover:shadow-md"
+                  title={key.charAt(0).toUpperCase() + key.slice(1)}
+                  style={{ '--icon-light': lightColor, '--icon-dark': darkColor, '--hover-bg': hoverBg }}
+                  className="social-icon-btn group grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:border-transparent"
                 >
-                  <Icon size={16} style={{ color }} className="transition-all duration-300 group-hover:!text-white" />
+                  <Icon size={20} className="social-icon transition-all duration-300 group-hover:text-white" />
                 </a>
               );
             })}
