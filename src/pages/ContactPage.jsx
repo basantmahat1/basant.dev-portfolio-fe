@@ -59,7 +59,7 @@ export default function ContactPage() {
         <div className="shell">
           <div className="glass grid gap-4 p-5 sm:gap-6 sm:p-8 md:grid-cols-3">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="h-24 animate-pulse rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4" />
+              <div key={i} className="h-16 animate-pulse rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4" />
             ))}
           </div>
         </div>
@@ -75,56 +75,40 @@ export default function ContactPage() {
       </div>
 
       <div className="shell">
-        {/* grid प्रयोग गर्दा सबै बाकसहरू सन्तुलित र समान आकारका बन्छन् */}
         <div className="glass grid grid-cols-1 gap-4 p-5 sm:p-8 md:grid-cols-3">
 
           {email && (
-            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
               <FaEnvelope className="shrink-0 text-tertiary" />
-              <div className="min-w-0 flex-1">
-                <span className="block text-xs uppercase tracking-wide text-text-secondary">
-                  Email
-                </span>
-                <a
-                  href={`mailto:${email}`}
-                  className="block truncate text-sm font-medium text-text-primary hover:underline"
-                  title={email}
-                >
-                  {email}
-                </a>
-              </div>
+              <a
+                href={`mailto:${email}`}
+                className="text-xs sm:text-sm font-medium text-text-primary truncate w-full hover:underline"
+                title={email}
+              >
+                {email}
+              </a>
             </div>
           )}
 
           {phone && (
-            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
               <FaPhone className="shrink-0 text-tertiary" />
-              <div className="min-w-0 flex-1">
-                <span className="block text-xs uppercase tracking-wide text-text-secondary">
-                  Phone
-                </span>
-                <a
-                  href={whatsappUrl || `tel:${phone}`}
-                  className="block truncate text-sm font-medium text-text-primary hover:underline"
-                  title={phone}
-                >
-                  {phone}
-                </a>
-              </div>
+              <a
+                href={whatsappUrl || `tel:${phone}`}
+                className="text-xs sm:text-sm font-medium text-text-primary truncate w-full hover:underline"
+                title={phone}
+              >
+                {phone}
+              </a>
             </div>
           )}
 
           {location && (
-            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
               <FaMapMarkerAlt className="shrink-0 text-tertiary" />
-              <div className="min-w-0 flex-1">
-                <span className="block text-xs uppercase tracking-wide text-text-secondary">
-                  Location
-                </span>
-                <span className="block truncate text-sm font-medium text-text-primary" title={location}>
-                  {location}
-                </span>
-              </div>
+              <span className="text-xs sm:text-sm font-medium text-text-primary truncate w-full" title={location}>
+                {location}
+              </span>
             </div>
           )}
 
