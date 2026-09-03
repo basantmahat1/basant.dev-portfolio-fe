@@ -75,51 +75,63 @@ export default function ContactPage() {
       </div>
 
       <div className="shell">
-        <div className="glass grid grid-cols-1 gap-4 p-5 sm:gap-6 sm:p-8 md:grid-cols-3">
+        <div className="glass flex flex-col gap-4 p-5 sm:p-8 md:flex-row md:items-stretch">
           {email && (
-            <div className="rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
-              <FaEnvelope className="mb-3 text-tertiary" />
-              <div className="mb-1 text-xs uppercase tracking-wide text-text-secondary">
-                Email
+            <div className="flex min-w-0 flex-1 items-center gap-4 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
+              <FaEnvelope className="shrink-0 text-tertiary" />
+
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
+                  Email
+                </span>
+
+                <a
+                  href={`mailto:${email}`}
+                  className="truncate text-sm font-medium text-text-primary"
+                >
+                  {email}
+                </a>
               </div>
-              <a
-                href={`mailto:${email}`}
-                className="block break-all text-sm font-medium text-text-primary"
-              >
-                {email}
-              </a>
             </div>
           )}
 
           {phone && (
-            <div className="rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
-              <FaPhone className="mb-3 text-tertiary" />
-              <div className="mb-1 text-xs uppercase tracking-wide text-text-secondary">
-                Phone
+            <div className="flex min-w-0 flex-1 items-center gap-4 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
+              <FaPhone className="shrink-0 text-tertiary" />
+
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
+                  Phone
+                </span>
+
+                <a
+                  href={whatsappUrl || `tel:${phone}`}
+                  className="truncate text-sm font-medium text-text-primary"
+                >
+                  {phone}
+                </a>
               </div>
-              <a
-                href={whatsappUrl || `tel:${phone}`}
-                className="block text-sm font-medium text-text-primary"
-              >
-                {phone}
-              </a>
             </div>
           )}
 
           {location && (
-            <div className="rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
-              <FaMapMarkerAlt className="mb-3 text-tertiary" />
-              <div className="mb-1 text-xs uppercase tracking-wide text-text-secondary">
-                Location
-              </div>
-              <div className="text-sm font-medium text-text-primary">
-                {location}
+            <div className="flex min-w-0 flex-1 items-center gap-4 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] p-4">
+              <FaMapMarkerAlt className="shrink-0 text-tertiary" />
+
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
+                  Location
+                </span>
+
+                <span className="truncate text-sm font-medium text-text-primary">
+                  {location}
+                </span>
               </div>
             </div>
           )}
 
           {!email && !phone && !location && (
-            <div className="col-span-full py-4 text-center text-sm text-text-secondary">
+            <div className="w-full py-4 text-center text-sm text-text-secondary">
               Contact info not available yet. Please update from admin panel.
             </div>
           )}
