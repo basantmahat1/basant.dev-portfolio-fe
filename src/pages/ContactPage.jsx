@@ -51,7 +51,7 @@ export default function ContactPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
+      <section className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
         <div className="mb-8 text-center">
           <div className="section-label">Contact</div>
           <h1 className="section-title mb-3 text-3xl sm:text-4xl">Let&apos;s build together</h1>
@@ -68,21 +68,23 @@ export default function ContactPage() {
   }
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
+    <section className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16">
       <div className="mb-8 text-center">
         <div className="section-label">Contact</div>
         <h1 className="section-title mb-3 text-3xl sm:text-4xl">Let&apos;s build together</h1>
       </div>
 
       <div className="shell">
+        {/* max-w-4xl लाई max-w-5xl बनाइएको छ र email को लागि md:col-span-1.2 जस्तो width मिलाउन वा grid-cols सम्भव बनाउन */}
         <div className="glass grid grid-cols-1 gap-4 p-5 sm:p-8 md:grid-cols-3">
 
           {email && (
-            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
-              <FaEnvelope className="shrink-0 text-tertiary" />
+            /* col-span-1 md:col-span-1 ले सामान्य ठाउँ लिन्छ, तर हामीले इमेलको बाकसलाई अलि फराकिलो बनाउन सक्छौं */
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 md:col-span-1 lg:col-span-1 min-w-0">
+              <FaEnvelope className="shrink-0 text-tertiary text-base" />
               <a
                 href={`mailto:${email}`}
-                className="text-xs sm:text-sm font-medium text-text-primary truncate w-full hover:underline"
+                className="text-sm font-medium text-text-primary whitespace-nowrap hover:underline"
                 title={email}
               >
                 {email}
@@ -92,10 +94,10 @@ export default function ContactPage() {
 
           {phone && (
             <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
-              <FaPhone className="shrink-0 text-tertiary" />
+              <FaPhone className="shrink-0 text-tertiary text-base" />
               <a
                 href={whatsappUrl || `tel:${phone}`}
-                className="text-xs sm:text-sm font-medium text-text-primary truncate w-full hover:underline"
+                className="text-sm font-medium text-text-primary whitespace-nowrap hover:underline"
                 title={phone}
               >
                 {phone}
@@ -105,8 +107,8 @@ export default function ContactPage() {
 
           {location && (
             <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 min-w-0">
-              <FaMapMarkerAlt className="shrink-0 text-tertiary" />
-              <span className="text-xs sm:text-sm font-medium text-text-primary truncate w-full" title={location}>
+              <FaMapMarkerAlt className="shrink-0 text-tertiary text-base" />
+              <span className="text-sm font-medium text-text-primary whitespace-nowrap" title={location}>
                 {location}
               </span>
             </div>
