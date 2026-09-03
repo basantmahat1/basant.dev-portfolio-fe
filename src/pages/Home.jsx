@@ -326,35 +326,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-block" id="contact">
-        <div className="shell animate-scroll">
-          <div className="glass banner-flex">
-            <div>
-              <h3 className="contact-title">
-                Let&apos;s build something <em>amazing</em> together
-              </h3>
-              <p className="contact-subtitle">
-                I&apos;m currently available for freelance work or full-time opportunities.
-              </p>
-            </div>
-            <div className="contact-pills">
-              <div className="pill-item">
-                <FaEnvelope /> {about.contact.email}
-              </div>
-              <div className="pill-item">
-                <FaPhone /> {about.contact.phone}
-              </div>
-              <div className="pill-item">
-                <FaMapMarkerAlt /> {about.contact.city}
-              </div>
-              <a href="mailto:hello@basant.dev" className="btn-primary text-xs">
-                Get In Touch <FaPaperPlane size={10} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-8 sm:pb-20" id="featured-projects">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -394,6 +365,35 @@ export default function Home() {
             ))}
           </div>
         )}
+      </section>
+
+      <section className="section-block" id="contact">
+        <div className="shell animate-scroll">
+          <div className="glass banner-flex">
+            <div>
+              <h3 className="contact-title">
+                Let&apos;s build something <em>amazing</em> together
+              </h3>
+              <p className="contact-subtitle">
+                I&apos;m currently available for freelance work or full-time opportunities.
+              </p>
+            </div>
+            <div className="contact-pills">
+              <div className="pill-item">
+                <FaEnvelope /> {about.contact.email}
+              </div>
+              <div className="pill-item">
+                <FaPhone /> {about.contact.phone}
+              </div>
+              <div className="pill-item">
+                <FaMapMarkerAlt /> {about.contact.city}
+              </div>
+              <a href={`mailto:${about.social?.email || about.contact.email}`} className="btn-primary text-xs">
+                Get In Touch <FaPaperPlane size={10} />
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
     </>
