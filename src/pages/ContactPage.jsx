@@ -75,58 +75,61 @@ export default function ContactPage() {
       </div>
 
       <div className="shell">
-        <div className="glass flex flex-col gap-4 p-5 sm:p-8 md:flex-row md:items-center">
+        {/* grid प्रयोग गर्दा सबै बाकसहरू सन्तुलित र समान आकारका बन्छन् */}
+        <div className="glass grid grid-cols-1 gap-4 p-5 sm:p-8 md:grid-cols-3">
 
           {email && (
-            <div className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
               <FaEnvelope className="shrink-0 text-tertiary" />
-
-              <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
-                Email
-              </span>
-
-              <a
-                href={`mailto:${email}`}
-                className="whitespace-nowrap text-sm font-medium text-text-primary"
-              >
-                {email}
-              </a>
+              <div className="min-w-0 flex-1">
+                <span className="block text-xs uppercase tracking-wide text-text-secondary">
+                  Email
+                </span>
+                <a
+                  href={`mailto:${email}`}
+                  className="block truncate text-sm font-medium text-text-primary hover:underline"
+                  title={email}
+                >
+                  {email}
+                </a>
+              </div>
             </div>
           )}
 
           {phone && (
-            <div className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
               <FaPhone className="shrink-0 text-tertiary" />
-
-              <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
-                Phone
-              </span>
-
-              <a
-                href={whatsappUrl || `tel:${phone}`}
-                className="whitespace-nowrap text-sm font-medium text-text-primary"
-              >
-                {phone}
-              </a>
+              <div className="min-w-0 flex-1">
+                <span className="block text-xs uppercase tracking-wide text-text-secondary">
+                  Phone
+                </span>
+                <a
+                  href={whatsappUrl || `tel:${phone}`}
+                  className="block truncate text-sm font-medium text-text-primary hover:underline"
+                  title={phone}
+                >
+                  {phone}
+                </a>
+              </div>
             </div>
           )}
 
           {location && (
-            <div className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4">
+            <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.08)] px-4 py-4 overflow-hidden">
               <FaMapMarkerAlt className="shrink-0 text-tertiary" />
-
-              <span className="shrink-0 text-xs uppercase tracking-wide text-text-secondary">
-                Location
-              </span>
-
-              <span className="whitespace-nowrap text-sm font-medium text-text-primary">
-                {location}
-              </span>
+              <div className="min-w-0 flex-1">
+                <span className="block text-xs uppercase tracking-wide text-text-secondary">
+                  Location
+                </span>
+                <span className="block truncate text-sm font-medium text-text-primary" title={location}>
+                  {location}
+                </span>
+              </div>
             </div>
           )}
 
           {!email && !phone && !location && (
-            <div className="w-full py-4 text-center text-sm text-text-secondary">
+            <div className="col-span-full py-4 text-center text-sm text-text-secondary">
               Contact info not available yet. Please update from admin panel.
             </div>
           )}
